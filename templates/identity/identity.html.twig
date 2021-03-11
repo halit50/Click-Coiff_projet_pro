@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}A propos de Click & Coiff - Click & Coiff{% endblock %}
+
+{% block content %}
+    {% block inscription %} {% endblock %}
+    <h2 class="text-center mt-4"> A propos de Click & Coiff</h2>
+    <div class="mt-3">
+        <p class="text-center">
+            Click & Coiff est une application web qui permet de prendre rendez-vous, chez tous les coiffeurs inscrits sur notre site, directement en ligne sans avoir besoin de contacter le professionnel. Il permet de réaliser un gain de temps non négligeable sur la gestion des agendas des clients et des instituts.
+            Notre site est à but non lucratif. Le projet part d'une idée de notre créateur Halit Cinici durant la crise sanitaire liée au Covid-19.
+        </p>
+
+        <p class="text-center"> Pour tous renseignements liés à la gestion de notre site, vous pouvez nous <a href="{{ path ('contact') }}">contacter</a> en cliquant sur ce lien</p>
+
+        <p class="text-center"> Notre but est de rescencé un maximum de professionnels sur notre site pour apporté un maximum de possibilité à nos utilisateurs. Toutes les améliorations que vous avez à nous apportés seront bénéfiques pour nous, n'hésitez donc pas à nous les remonter via notre formulaire de contact. Nous essayons de traiter au maximum les demandes de nos utilisateurs ainsi que des professionnels qui ont fait confiance à notre site </p>
+
+        <p class="text-center"> Notre site est en constante évolution et toutes les améliorations sont les bienvenues.</p>
+
+    </div>
+
+{% endblock %}
