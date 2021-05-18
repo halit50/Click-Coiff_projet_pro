@@ -30,7 +30,7 @@
 	<!-- CORPS -->
 	<div id="search">
 		<img src="{{ asset('assets/img/loupe.png')}}" alt="loupe">
-		<p class="text-dark">
+		<p class="text-dark searchp">
 			<span>Recherchez votre salon de coiffure</span>
 		</p>
 	</div>
@@ -44,8 +44,8 @@
 			<option value="">Homme</option>
 		</select>
 		<label for="recherche" class="mr-2 ml-2">A</label>
-		<input type="text" class="form-control w-25" id="recherche" name="recherche" placeholder="Saisir un département">
-		<input type="submit" value="Rechercher" class="btn btn-info ml-2">
+		<input type="text" class="form-control w-25" id="recherche" name="recherche" placeholder="Saisir le code du département de recherche" maxlength="2" required>
+		<a href="{{ path ('recherche')}}" class="btn btn-info ml-2">Rechercher</a>
 	</form>
 
 	<div id="anim" class='row'>
@@ -92,6 +92,15 @@
 					Vous n'avez pas d'idées? Retrouvez les coupes tendances du moment et faites vous une idée en direct
 				</p>
 			</div>
+		</div>
+	</div>
+
+	<div class="row mt-5">
+		<div class="col-6" id='parent-txt-carte'>
+			<p id='txt-carte'>Retrouvez nous partout en France métropolitaine, à côté de chez vous, lors de vos déplacements loin de chez vous, chez votre cousin ou votre tante peu importe. Il vous suffit d'avoir une connxion internet pour pouvoir prendre RDV chez le coiffeur de votre choix</p>
+		</div>
+		<div class="col-6">
+			<img src="{{ asset ('assets/img/france.png')}}" alt="carte_france">
 		</div>
 	</div>
 

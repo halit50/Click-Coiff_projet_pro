@@ -28,7 +28,7 @@ class ContactController extends AbstractController
             ->setReplyTo($mail)
 
             // On attribue le destinataire
-            ->setTo('halit.cinici@live.fr')
+            ->setTo('clickcoiff@yopmail.com')
 
             //on crée le message avec la vue Twig
             ->setBody(
@@ -38,6 +38,7 @@ class ContactController extends AbstractController
 
             // On envoie le message
             $mailer->send($message);
+            //dd($message);
 
             $this->addFlash('message', 'Votre message a bien été envoyé');
             return $this->redirectToRoute('home');

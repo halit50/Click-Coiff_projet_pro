@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte - Click & Coiff
+{% endblock %}
+
+{% block content %}
+	<h1 class="text-center mt-2 text-dark"> Mon Compte</h1>
+	<p class="text-center mt-2 text-dark">Bonjour {{ app.user.firstname}}, c'est ici que vous pourrez gérer votre profil et consulter vos rendez-vous </p>
+	<a href="#">Mon profil</a>
+	<br>
+	<a href="#">Mes rendez-vous</a>
+
+{% endblock %}

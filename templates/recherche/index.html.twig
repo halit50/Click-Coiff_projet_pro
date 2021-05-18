@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche - Click & Coiff{% endblock %}
+
+{% block content %}
+
+<h2 class="text-center mt-3 text-dark"> Résultat de votre recherche</h2>
+
+
+<table class="table mt-3">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nom du salon</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for enseigne in enseignes %}
+    <tr>
+        <td>{{ enseigne.nom }}</td>
+        <td>{{ enseigne.adresses|raw }}</td>
+        <td><a href="{{ path ('ficheEnseigne')}}" class="btn btn-info"> Prendre RDV</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}

@@ -2,4 +2,5 @@
 <p> <strong>Nom : </strong>{{ contact.nom }}</p><br>
 <p> <strong>Adresse Mail : </strong>{{ contact.email }}</p><br>
 <p> <strong>Objet : </strong>{{ contact.objet }}</p><br>
-<p> <strong>Message : </strong>{{ contact.message }}</p>
+{# le RAW sert à echapper les balises html afin d'éviter une faille#}
+<p> <strong>Message : </strong>{{ contact.message|raw}}</p>

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CoupesTendancesController!{% endblock %}
+
+{% block content %}
+    <h2 class="text-dark mt-4 text-center"> Vous trouvez ici les dernières coupes tendances ajoutées par vos salons préférés</h2>
+    <div class="d-flex justify-content-between row">
+       
+    {% for coupe in coupes %}
+        {% for coup in coupe.fichiers %}
+           <div class="card mt-4 col-3 ml-2" style="width: 18rem;">
+                <img src="/image/{{ coup.image }}" alt="{{ coup.nom }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{coup.nom}}</h5>
+                    <p> Nom de l'enseigne</p>
+                </div>
+            </div> 
+        {% endfor %}
+    {% endfor %}
+    </div>
+    
+{% endblock %}

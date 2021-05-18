@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -55,9 +57,19 @@ class User implements UserInterface
     private $phone;
 
     /**
-     * @ORM\OneToOne(targetEntity=Boss::class, mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Enseigne::class, mappedBy="user", cascade={"persist", "remove"})
      */
-    private $boss;
+    private $enseigne;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PrendreRdv::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $prendreRdvs;
+
+    public function __construct()
+    {
+        $this->prendreRdvs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -188,20 +200,51 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getBoss(): ?Boss
+    public function getEnseigne(): ?Enseigne
     {
-        return $this->boss;
+        return $this->enseigne;
     }
 
-    public function setBoss(Boss $boss): self
+    public function setEnseigne(Enseigne $enseigne): self
     {
         // set the owning side of the relation if necessary
-        if ($boss->getUser() !== $this) {
-            $boss->setUser($this);
+        if ($enseigne->getUser() !== $this) {
+            $enseigne->setUser($this);
         }
 
-        $this->boss = $boss;
+        $this->enseigne = $enseigne;
 
         return $this;
     }
+
+    /**
+     * @return Collection|PrendreRdv[]
+     */
+    public function getPrendreRdvs(): Collection
+    {
+        return $this->prendreRdvs;
+    }
+
+    public function addPrendreRdv(PrendreRdv $prendreRdv): self
+    {
+        if (!$this->prendreRdvs->contains($prendreRdv)) {
+            $this->prendreRdvs[] = $prendreRdv;
+            $prendreRdv->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrendreRdv(PrendreRdv $prendreRdv): self
+    {
+        if ($this->prendreRdvs->removeElement($prendreRdv)) {
+            // set the owning side to null (unless already changed)
+            if ($prendreRdv->getUser() === $this) {
+                $prendreRdv->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

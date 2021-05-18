@@ -43,11 +43,16 @@ nav ul {
   margin-top: 40px;
 }
 
-#search p {
+.searchp {
   font-weight: bold;
   margin-left: 10px;
   font-size: 30px;
 }
+
+#search img {
+  height: 40px;
+}
+
 
 #recherche {
   display: inline !important;
@@ -74,3 +79,17 @@ footer ul {
 .p-cache {
   font-size: 15px !important;
 }
+
+#parent-txt-carte {
+  display: flex;
+}
+
+#txt-carte {
+  margin: auto;
+  font-size: 25px;
+  font-style: italic;
+}
+.form-control, .btn, .custom-select {
+  border-radius: 25px;
+}
+

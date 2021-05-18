@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\RegisterType;
+use App\Entity\Enseigne;
+use App\Form\EnseigneType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,15 +17,17 @@ class RegisterAdminController extends AbstractController
      */
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegisterType::class, $user);
+        $enseigne = new Enseigne();
+        //$user = new User();
+        $form = $this->createForm(EnseigneType::class, $enseigne);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $enseigne->getUser();
             $password = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
             $user->setRoles(['ROLE_ADMIN']);
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+            $em->persist($enseigne);
             $em->flush();
 
             return $this->redirectToRoute('admin');

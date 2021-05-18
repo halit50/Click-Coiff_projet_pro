@@ -28,7 +28,7 @@ class RegisterController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('moncompte');
         }
         return $this->render('register/register.html.twig', [
             'form' => $form->createView()
