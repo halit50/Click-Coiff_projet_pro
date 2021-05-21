@@ -27,50 +27,49 @@ class RegisterType extends AbstractType
                     'Monsieur' => "Homme"
                 ],
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto'
+                    'class' => 'form-control m-auto'
                 ]
             ])
             ->add('firstname', TextType::class, [
                 'label'=> 'Prénom',
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto',
+                    'class' => 'form-control m-auto',
                     'placeholder' => 'Merci de saisir votre prénom'
                 ]
             ])
             ->add('lastname', TextType::class, [
                 'label'=>'Nom',
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto',
+                    'class' => 'form-control m-auto',
                     'placeholder' => 'Merci de saisir votre nom'
                 ]
             ])
             ->add('phone', TelType::class, [
                 'label' => 'Numéro de téléphone',
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto',
+                    'class' => 'form-control m-auto',
                     'placeholder' => 'Merci de saisir votre numéro de téléphone'
                 ]
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Votre adresse mail',
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto',
+                    'class' => 'form-control m-auto',
                     'placeholder' => 'Merci de saisir votre adresse Email'
                 ]
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'label' => 'Votre mot de passe',
                 'required' => true,
                 'first_options'=>['label'=> 'Mot de passe', 
                 'attr' => [
                     'placeholder' => 'Merci de saisir votre mot de passe',
-                    'class' => 'form-control w-50 m-auto'
+                    'class' => 'form-control m-auto'
                 ]],
                 'second_options' => ['label' => 'Confirmez votre mot de passe',
                 'attr' => [
                     'placeholder' => 'Confirmez votre mot de passe',
-                    'class' => 'form-control w-50 m-auto'
+                    'class' => 'form-control m-auto'
                 ]]
             ] 
             )

@@ -43,6 +43,10 @@ class PrestationServices
     {
         $this->enseigne = new ArrayCollection();
     }
+    public function __toString(){
+        return $this->getnom();
+    }
+
 
     public function getId(): ?int
     {

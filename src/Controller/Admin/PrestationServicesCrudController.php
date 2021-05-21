@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class PrestationServicesCrudController extends AbstractCrudController
 {
@@ -21,7 +22,8 @@ class PrestationServicesCrudController extends AbstractCrudController
         return [
         TextField::new('nom'),
         MoneyField::new('prix')->setCurrency('EUR'),
-        IntegerField::new('duree', 'Durée en minutes')
+        IntegerField::new('duree', 'Durée en minutes'),
+        AssociationField::new('enseigne'),
         ];
     }
     

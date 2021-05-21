@@ -19,37 +19,39 @@ class EnseigneType extends AbstractType
             ->add('nom', TextType::class,[
                 'label'=> 'Nom de votre enseigne',
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto',
+                    'class' => 'form-control m-auto',
                     'placeholder' => 'Merci de saisir le nom de votre enseigne'
                 ]
             ])
             ->add('kbis',TextType::class,[
                 'label'=> 'Votre numéro de Siren',
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto',
+                    'class' => 'form-control m-auto',
                     'placeholder' => 'Merci de saisir votre numéro de Siren'
                 ]])
             ->add('reseausocial',TextType::class,[
-                'label'=> 'Vos réseaux sociaux',
+                'label'=> 'Vos réseaux sociaux (facultatif)',
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto',
-                    'placeholder' => 'Merci de saisir vos différents réseaux sociaux (facultatif)'
+                    'class' => 'form-control m-auto',
+                    'placeholder' => 'Entrer l\'URL de votre réseau'
                 ]])
             ->add('typeCoiffeur', ChoiceType::class, [
                 'label' => 'Vous êtes un salon de coiffure pour homme, femme ou les deux?',
                 'choices'=> [
                     ' ' =>0,
-                    'Madame' => "Femme",
-                    'Monsieur' => "Homme",
+                    'Femme' => "Femme",
+                    'Homme' => "Homme",
                     'Mixte'=>'Mixte'
                 ],
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto'
+                    'class' => 'form-control m-auto'
                 ]
             ])
             ->add('user', RegisterType::class, [
-                'label' => 'Gérant'
+                'label' => 'Gérant',
             ])
+            ->add('adresses', AdressesType::class
+            )
             
         ;
     }

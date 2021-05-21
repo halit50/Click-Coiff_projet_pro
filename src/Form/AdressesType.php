@@ -19,31 +19,33 @@ class AdressesType extends AbstractType
             ->add('rue', TextType::class, [
                 'label' => 'Rue',
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto'
+                    'class' => 'form-control m-auto'
                 ]
             ])
             ->add('codePostal',IntegerType::class, [
                 'label' => 'Code Postal',
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto'
+                    'class' => 'form-control  m-auto'
                 ]
             ])
             ->add('ville',TextType::class, [
                 'label' => 'Ville',
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto'
+                    'class' => 'form-control  m-auto'
                 ]
             ])
             ->add('pays', TextType::class, [
                 'label' => 'Pays',
+                'disabled' =>true,
+                'data' => 'France',
                 'attr' => [
-                    'class' => 'form-control w-50 m-auto'
+                    'class' => 'form-control  m-auto'
                 ]
-            ])
+           ])
             //->add('enseigne')
-            ->add('fichiers', CollectionType::class, [
-                'label' => 'Joindre une photo de votre salon'
-            ])
+            // ->add('fichiers', FileType::class, [
+            //     'label' => 'Joindre une photo de votre salon'
+            // ])
         ;
     }
 

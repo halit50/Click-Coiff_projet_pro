@@ -8,8 +8,46 @@
 
 	<h2 class="text-center mt-2">Inscription pour les Professionnelles</h2>
 
-	<div class="text-center">
-		{{form (form)}}
+	{{ form_start(form) }}
+		<div class="row">
+			<div class="col-4">
+				{{ form_label(form.nom) }}
+				{{ form_widget(form.nom)}}
+				{{ form_label(form.kbis) }}
+				{{ form_widget(form.kbis)}}
+				{{ form_label(form.reseausocial) }}
+				{{ form_widget(form.reseausocial)}}
+				{{ form_label(form.typeCoiffeur) }}
+				{{ form_widget(form.typeCoiffeur)}}
+			</div>
+			<div class="col-4">
+				{{ form_label(form.user.gender) }}
+				{{ form_widget(form.user.gender)}}
+				{{ form_label(form.user.firstname) }}
+				{{ form_widget(form.user.firstname)}}
+				{{ form_label(form.user.lastname) }}
+				{{ form_widget(form.user.lastname)}}
+				{{ form_label(form.user.phone) }}
+				{{ form_widget(form.user.phone)}}
+				{{ form_label(form.user.email) }}
+				{{ form_widget(form.user.email)}}
+				{{ form_widget(form.user.password)}}
+			</div>
+			<div class="col-4">
+				{{ form_label(form.adresses.rue) }}
+				{{ form_widget(form.adresses.rue)}}
+				{{ form_label(form.adresses.codePostal) }}
+				{{ form_widget(form.adresses.codePostal)}}
+				{{ form_label(form.adresses.ville) }}
+				{{ form_widget(form.adresses.ville)}}
+				{{ form_label(form.adresses.pays) }}
+				{{ form_widget(form.adresses.pays)}}
+				{# {{ form_label(form.adresses.fichiers) }}
+				{{ form_widget(form.adresses.fichiers)}} #}
+				{{ form_widget(form.user.submit)}}
+			</div>
 		</div>
+	{{ form_end(form) }}
+	
 
 	{% endblock %}

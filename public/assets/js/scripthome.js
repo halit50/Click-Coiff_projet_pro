@@ -38,4 +38,3 @@ anim4.addEventListener('mouseleave', function() {
     document.getElementById('tendances').style.marginTop = '0px';
 })
 
-

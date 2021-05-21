@@ -25,19 +25,21 @@ class Creneau
     private $periodicite;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\ManyToMany(targetEntity=Enseigne::class, inversedBy="creneaus")
+     */
+    private $enseigne;
+
+    /**
+     * @ORM\Column(type="time")
      */
     private $heuredebut;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="time")
      */
     private $heurefin;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Enseigne::class, inversedBy="creneaus")
-     */
-    private $enseigne;
+    
 
     public function __construct()
     {
@@ -57,6 +59,30 @@ class Creneau
     public function setPeriodicite(string $periodicite): self
     {
         $this->periodicite = $periodicite;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Enseigne[]
+     */
+    public function getEnseigne(): Collection
+    {
+        return $this->enseigne;
+    }
+
+    public function addEnseigne(Enseigne $enseigne): self
+    {
+        if (!$this->enseigne->contains($enseigne)) {
+            $this->enseigne[] = $enseigne;
+        }
+
+        return $this;
+    }
+
+    public function removeEnseigne(Enseigne $enseigne): self
+    {
+        $this->enseigne->removeElement($enseigne);
 
         return $this;
     }
@@ -85,27 +111,5 @@ class Creneau
         return $this;
     }
 
-    /**
-     * @return Collection|Enseigne[]
-     */
-    public function getEnseigne(): Collection
-    {
-        return $this->enseigne;
-    }
-
-    public function addEnseigne(Enseigne $enseigne): self
-    {
-        if (!$this->enseigne->contains($enseigne)) {
-            $this->enseigne[] = $enseigne;
-        }
-
-        return $this;
-    }
-
-    public function removeEnseigne(Enseigne $enseigne): self
-    {
-        $this->enseigne->removeElement($enseigne);
-
-        return $this;
-    }
+    
 }

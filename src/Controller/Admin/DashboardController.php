@@ -37,7 +37,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('Tabeleau de bord', 'fa fa-home');
         yield MenuItem::linkToCrud('Mon enseigne', 'fas fa-building', Enseigne::class);
         yield MenuItem::linkToCrud('Prestation de services', 'fas fa-book', PrestationServices::class);
-        yield MenuItem::linkToCrud('Mon adresse', 'fas fa-map', Adresses::class);
         yield MenuItem::linkToCrud('Mes créneaux', 'fas fa-calendar-check', Creneau::class);
         yield MenuItem::linkToCrud('Catégorie de fichiers', 'fas fa-align-justify', CategorieFichier::class);
         yield MenuItem::linkToCrud('Fichiers', 'fas fa-file-image', Fichier::class);

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Adresses;
 use App\Entity\Enseigne;
 use App\Form\EnseigneType;
 use Symfony\Component\HttpFoundation\Request;

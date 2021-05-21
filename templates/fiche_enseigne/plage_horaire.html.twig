@@ -1,0 +1,14 @@
+{% for rdv in creneauRdv %}
+    {% if rdv.dispo %}
+    <button type="button"
+    class="btn btn-info m-2 btnrdv" 
+    value="{{ rdv.heure }}"
+    onclick="clickBouton(event)"
+    >{{ rdv.heure }}</button>
+    {% else %}
+    <button type="button"
+    class="btn btn-secondary m-2"
+    readonly 
+    >{{ rdv.heure }}</button>
+    {% endif %}
+{% endfor %}

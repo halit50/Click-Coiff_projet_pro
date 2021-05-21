@@ -8,6 +8,6 @@
 	<p class="text-center mt-2 text-dark">Bonjour {{ app.user.firstname}}, c'est ici que vous pourrez gérer votre profil et consulter vos rendez-vous </p>
 	<a href="#">Mon profil</a>
 	<br>
-	<a href="#">Mes rendez-vous</a>
+	<a href="{{ path ('mesrdv')}}">Mes rendez-vous</a>
 
 {% endblock %}

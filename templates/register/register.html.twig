@@ -6,8 +6,20 @@
 
 <h2 class="text-center mt-2">Inscription</h2>
 
-<div class="text-center">
-    {{form (form)}}
+<div class="text-center w-50 m-auto">
+    {{ form_start(form) }}
+        {{ form_label(form.gender) }}
+		{{ form_widget(form.gender)}}
+		{{ form_label(form.firstname) }}
+		{{ form_widget(form.firstname)}}
+		{{ form_label(form.lastname) }}
+		{{ form_widget(form.lastname)}}
+		{{ form_label(form.phone) }}
+		{{ form_widget(form.phone)}}
+		{{ form_label(form.email) }}
+		{{ form_widget(form.email)}}
+		{{ form_widget(form.password)}}
+    {{ form_end(form) }}
 </div>
 
 {% endblock %}
