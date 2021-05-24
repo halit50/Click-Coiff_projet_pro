@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil - Click & Coiff{% endblock %}
+
+{% block content %}
+<h2 class="mt-3 text-dark text-center">Votre profil</h2>
+    <div class="row d-flex mt-3">
+        <div class="col-12 mb-4 text-center text-dark">
+            <label for="" class="text-center text-dark"> Mon prénom</label>
+            <input type="text" value='{{ user.firstname }}' disabled class="form-control m-auto text-center w-50">
+            
+        </div>
+        <div class="col-12 mb-4 text-center text-dark">
+            <label for="" class="text-center text-dark"> Mon nom</label>
+            <input type="text" value='{{ user.lastname}}' disabled class="form-control m-auto text-center w-50">   
+        </div>
+        <div class="col-12 mb-4 text-center text-dark">
+            <label for="" class="text-center text-dark"> Mon adresse Email</label>
+            <input type="text" value='{{ user.email }}' disabled class="form-control m-auto text-center w-50">  
+        </div> 
+        <div class="col-12 mb-4 text-center text-dark">
+            <label for="" class="text-center text-dark"> Sexe</label>
+            <input type="text" value='{{ user.gender }}' disabled class="form-control m-auto text-center w-50">  
+        </div> 
+        <div class="col-12 mb-4 text-center text-dark">
+            <label for="" class="text-center text-dark"> Mon numéro de téléphone</label>
+            <input type="text" value='{{ user.phone }}' class="form-control m-auto text-center w-50">  
+        </div> 
+        <div class="col-12 mb-4 text-center text-dark">
+            <a href="#">Modifier votre mot de passe</a>
+        </div>
+    </div>
+{% endblock %}

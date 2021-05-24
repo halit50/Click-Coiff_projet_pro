@@ -7,19 +7,21 @@
 <h2 class="text-center mt-3 text-dark"> Résultat de votre recherche</h2>
 
 {% for enseigne in enseignes %}
-<div class="card m-3 p-1">
-  <div class="card-header bg-dark text-light">
+<div class="card m-3 p-1 recherchenseigne">
+  <div class="card-header bg-dark text-light recherchenseigne text-center">
     <p id="nomEnseigne">{{ enseigne.nom|capitalize }}</p>
   </div>
   <div class="card-body">
     <div class="d-flex justify-content-between">
     
-    {% for coupe in coupes %}
-        {% for coup in coupe.fichiers %}
-            <img src="/image/{{ coup.image }}" alt="{{ coup.nom }}" id="listimg">
-        {% endfor %}
+    {% for test in enseigne.fichiers %}
+  
+        {% if test.categorie.nom == 'Salon' %}
+            <img src="/image/{{ test.image }}" alt="{{ test.nom }}" id="listimg">
+        {% endif %}
+        
     {% endfor %}
-    <p class="card-text inline-block">{{ enseigne.adresses|raw }}</p>
+    <p class="card-text inline-block text-bold">{{ enseigne.adresses|raw }}</p>
     </div>
     <div class="text-center">
     <a href="{{ path ('ficheEnseigne', {'id' : enseigne.id})}}" class="btn btn-info m-auto"> Prendre RDV</a>

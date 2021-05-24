@@ -7,6 +7,7 @@ use App\Form\AdressesType;
 use App\Form\RegisterType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -38,7 +39,6 @@ class EnseigneType extends AbstractType
             ->add('typeCoiffeur', ChoiceType::class, [
                 'label' => 'Vous êtes un salon de coiffure pour homme, femme ou les deux?',
                 'choices'=> [
-                    ' ' =>0,
                     'Femme' => "Femme",
                     'Homme' => "Homme",
                     'Mixte'=>'Mixte'

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Félicitation - Click & Coiff
+{% endblock %}
+
+{% block content %}
+
+	    {% for message in app.flashes('bravo') %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+	<p class="text-center text-dark mt-4">
+		Félicitation, Votre compte a bien été crée, pour aller sur votre compte
+		<a href="{{ path('app_login')}}">
+			veuillez vous connecter</a>
+	</p>
+
+
+
+
+{% endblock %}

@@ -31,14 +31,14 @@ class Fichier
     private $categorie;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Adresses::class, inversedBy="fichiers")
-     */
-    private $adresses;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $image;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Enseigne::class, inversedBy="fichiers")
+     */
+    private $enseigne;
 
     public function __construct()
     {
@@ -74,29 +74,6 @@ class Fichier
         return $this;
     }
 
-    /**
-     * @return Collection|Adresses[]
-     */
-    public function getAdresses(): Collection
-    {
-        return $this->adresses;
-    }
-
-    public function addAdress(Adresses $adress): self
-    {
-        if (!$this->adresses->contains($adress)) {
-            $this->adresses[] = $adress;
-        }
-
-        return $this;
-    }
-
-    public function removeAdress(Adresses $adress): self
-    {
-        $this->adresses->removeElement($adress);
-
-        return $this;
-    }
 
     public function getImage(): ?string
     {
@@ -109,4 +86,17 @@ class Fichier
 
         return $this;
     }
+
+    public function getEnseigne(): ?Enseigne
+    {
+        return $this->enseigne;
+    }
+
+    public function setEnseigne(?Enseigne $enseigne): self
+    {
+        $this->enseigne = $enseigne;
+
+        return $this;
+    }
+
 }

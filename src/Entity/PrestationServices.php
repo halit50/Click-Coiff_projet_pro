@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\PrestationServicesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Controller\Admin\EnseigneCrudController;
+use App\Entity\Enseigne;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=PrestationServicesRepository::class)
@@ -35,14 +35,11 @@ class PrestationServices
     private $duree;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Enseigne::class, inversedBy="prestationServices")
+     * @ORM\ManyToOne(targetEntity=Enseigne::class, inversedBy="prestationServices")
      */
     private $enseigne;
-
-    public function __construct()
-    {
-        $this->enseigne = new ArrayCollection();
-    }
+    
+    
     public function __toString(){
         return $this->getnom();
     }
@@ -89,27 +86,17 @@ class PrestationServices
         return $this;
     }
 
-    /**
-     * @return Collection|Enseigne[]
-     */
-    public function getEnseigne(): Collection
+    public function getEnseigne(): ?Enseigne
     {
         return $this->enseigne;
     }
 
-    public function addEnseigne(Enseigne $enseigne): self
+    public function setEnseigne(?Enseigne $enseigne): self
     {
-        if (!$this->enseigne->contains($enseigne)) {
-            $this->enseigne[] = $enseigne;
-        }
+        $this->enseigne = $enseigne;
 
         return $this;
     }
 
-    public function removeEnseigne(Enseigne $enseigne): self
-    {
-        $this->enseigne->removeElement($enseigne);
-
-        return $this;
-    }
+   
 }

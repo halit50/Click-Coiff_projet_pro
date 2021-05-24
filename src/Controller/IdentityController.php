@@ -13,6 +13,7 @@ class IdentityController extends AbstractController
      */
     public function index(): Response
     {
+        $this->addFlash('email', 'Votre mail a bien été envoyé, nous allons traiter votre demande dès que possible');
         return $this->render('identity/identity.html.twig',);
     }
 }

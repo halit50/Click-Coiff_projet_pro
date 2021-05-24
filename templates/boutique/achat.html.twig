@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ produit.nom}} - Click & Coiff{% endblock %}
+
+{% block content %}
+    <div class="row">
+    <div class="col-md-5">
+    <img src="/image/{{ produit.image}}" alt="{{ produit.nom}}" class="img-fluid">
+    </div>
+    <div class="col-md-7 my-auto ">
+    <h3>{{ produit.nom }}</h3>
+    <p>{{ produit.soustitre}}</p>
+    <span class="product-page-price">{{ (produit.prix / 100) | number_format(2, ',' , '.')}} €</span>
+    <hr>
+    <p>
+    {{ produit.description}}
+    </p>
+    <a href="{{ path ('add_to_panier',{'id':produit.id})}}" class="btn btn-primary">Ajouter au panier</a>
+    </div>
+    </div>
+    <hr>
+
+
+{% endblock %}

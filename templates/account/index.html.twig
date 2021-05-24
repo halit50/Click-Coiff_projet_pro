@@ -4,10 +4,20 @@
 {% endblock %}
 
 {% block content %}
-	<h1 class="text-center mt-2 text-dark"> Mon Compte</h1>
-	<p class="text-center mt-2 text-dark">Bonjour {{ app.user.firstname}}, c'est ici que vous pourrez gérer votre profil et consulter vos rendez-vous </p>
-	<a href="#">Mon profil</a>
-	<br>
-	<a href="{{ path ('mesrdv')}}">Mes rendez-vous</a>
+	
+		<h1 class="text-center mt-3 text-dark"> Mon Compte</h1>
+		
+		<p class="text-center mt-3 text-dark">Bonjour {{ app.user.firstname|capitalize }}, c'est ici que vous pourrez gérer votre profil et consulter vos rendez-vous </p>
+		<div class="row d-flex mt-5 justify-content-around" id="persoprincipal">
+			<div class="col-12 col-md-3 compteperso">
+				<a href="{{ path ('profil')}}" class="text-dark">Mon profil client</a>
+			</div>
+			<div class="col-12 col-md-3 compteperso">
+				<a href="{{ path ('mesrdv')}}" class="text-dark">Mes rendez-vous</a>
+			</div>
+			<div class="col-12 col-md-3 compteperso">
+				<a href="#" class="text-dark">Mes commandes</a>
+			</div>
+		</div>
 
 {% endblock %}

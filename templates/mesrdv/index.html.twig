@@ -1,20 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MesrdvController!{% endblock %}
+{% block title %}Mes rendez-vous - Click & Coiff{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block content %}
+<h2 class="text-center mt-3 text-dark"> Vos rendez-vous</h2>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% for message in app.flashes ('rdvpris') %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+{% if mesrdv %}
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Heure</th>
+      <th scope="col">Salon</th>
+      <th scope="col"> Actions </th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for rdv in mesrdv %}
+    <tr>
+    
+        <td>{{ rdv.daterdv|date('d-m-Y') }}</td>
+        <td>{{rdv.heures }}</td>
+        <td>{{ rdv.adresse.enseigne }}</td>
+        <td> <a href="{{ path('deleterdv', {id: rdv.id})}}" class="btn btn-danger" id="supprimerdv"> Annuler </a></td>
+     
+    </tr>
+  {% endfor %}   
+  </tbody>
+</table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/halitcinici/Desktop/click_coiff/src/Controller/MesrdvController.php'|file_link(0) }}">src/Controller/MesrdvController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/halitcinici/Desktop/click_coiff/templates/mesrdv/index.html.twig'|file_link(0) }}">templates/mesrdv/index.html.twig</a></code></li>
-    </ul>
-</div>
+{% else %}
+
+<p class="text-center text-dark mt-4">Vous n'avez actuellement pas de rendez-vous</p>
+
+{% endif %}
+
 {% endblock %}
+{% block javascript %} <script src="{{ asset('assets/js/scriptsuppression.js')}}"></script>{% endblock %}

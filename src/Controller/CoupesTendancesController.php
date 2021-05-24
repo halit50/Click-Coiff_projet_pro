@@ -2,13 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Fichier;
-use App\Entity\Enseigne;
 use App\Entity\CategorieFichier;
-use App\Repository\FichierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CoupesTendancesController extends AbstractController
@@ -21,6 +19,7 @@ class CoupesTendancesController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER") or ("ROLE_ADMIN")
      * @Route("/coupes-tendances", name="coupes_tendances")
      */
     public function index(): Response

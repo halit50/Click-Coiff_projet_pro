@@ -111,13 +111,73 @@ th {
 }
 
 .pres-enseigne {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 #titre-enseigne {
-  font-size: 2.5rem;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  letter-spacing: 1rem;
   text-shadow: 5px 5px 5px grey;
+}
+
+td {
+  border-top: none!important;
+}
+
+.textdeconone {
+  text-decoration: none!important;
+}
+
+.carousel img {
+  max-width: 90%;
+  height: 22em;
+  margin: auto;
+}
+
+#presenseigne {
+  border: 1px grey solid;
+  border-radius: 50px;
+  background-color:#FAF7F1;
+  margin: auto;
+  width: 80%;
+  padding: 40px;
+}
+
+.recherchenseigne {
+  border-radius: 30px!important;
+}
+
+#covid {
+  font-style: italic;
+}
+
+.compteperso {
+  background-color:#FAF7F1 ;
+  border: 1px grey solid;
+  padding: 100px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+}
+
+#france {
+  max-width: 100%!important;
+}
+
+.produit .produit-soustitre {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 10px;
+}
+.produit .produit-prix {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.produit img {
+  height: 10em;
+}
+
+.table td, .table th {
+  padding: 0.5rem!important;
 }

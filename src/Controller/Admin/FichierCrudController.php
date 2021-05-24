@@ -27,7 +27,8 @@ class FichierCrudController extends AbstractCrudController
             ->setUploadDir('public/image/')
             ->setUploadedFileNamePattern('[randomhash].[extension]')
             ->setRequired(false),
-            AssociationField::new('categorie')
+            AssociationField::new('categorie'),
+            AssociationField::new('enseigne')
         ];
         
 

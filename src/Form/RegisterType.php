@@ -4,15 +4,17 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 
 class RegisterType extends AbstractType
 {
@@ -21,28 +23,27 @@ class RegisterType extends AbstractType
         $builder
             ->add('gender', ChoiceType::class, [
                 'label' => 'Civilité',
-                'choices'=> [
-                    ' ' =>0,
+                'choices' => [
                     'Madame' => "Femme",
                     'Monsieur' => "Homme"
                 ],
                 'attr' => [
                     'class' => 'form-control m-auto'
-                ]
+                ],
             ])
             ->add('firstname', TextType::class, [
-                'label'=> 'Prénom',
+                'label' => 'Prénom',
                 'attr' => [
                     'class' => 'form-control m-auto',
                     'placeholder' => 'Merci de saisir votre prénom'
-                ]
+                ],
             ])
             ->add('lastname', TextType::class, [
-                'label'=>'Nom',
+                'label' => 'Nom',
                 'attr' => [
                     'class' => 'form-control m-auto',
                     'placeholder' => 'Merci de saisir votre nom'
-                ]
+                ],
             ])
             ->add('phone', TelType::class, [
                 'label' => 'Numéro de téléphone',
@@ -56,25 +57,33 @@ class RegisterType extends AbstractType
                 'attr' => [
                     'class' => 'form-control m-auto',
                     'placeholder' => 'Merci de saisir votre adresse Email'
-                ]
+                ],
             ])
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'required' => true,
-                'first_options'=>['label'=> 'Mot de passe', 
-                'attr' => [
-                    'placeholder' => 'Merci de saisir votre mot de passe',
-                    'class' => 'form-control m-auto'
-                ]],
-                'second_options' => ['label' => 'Confirmez votre mot de passe',
-                'attr' => [
-                    'placeholder' => 'Confirmez votre mot de passe',
-                    'class' => 'form-control m-auto'
-                ]]
-            ] 
+            ->add(
+                'password',
+                RepeatedType::class,
+                [
+                    'type' => PasswordType::class,
+                    'invalid_message' => 'Le mot de passe et la confirmation doivent être identiques',
+                    'required' => true,
+                    'first_options' => [
+                        'label' => 'Mot de passe',
+                        'attr' => [
+                            'placeholder' => 'Merci de saisir votre mot de passe',
+                            'class' => 'form-control m-auto'
+                        ]
+                    ],
+                    'second_options' => [
+                        'label' => 'Confirmez votre mot de passe',
+                        'attr' => [
+                            'placeholder' => 'Confirmez votre mot de passe',
+                            'class' => 'form-control m-auto'
+                        ]
+                    ]
+                ]
             )
             ->add('submit', SubmitType::class, [
-                'label'=> 'S\'inscrire',
+                'label' => 'S\'inscrire',
                 'attr' => [
                     'class' => 'btn btn-info mt-3'
                 ]

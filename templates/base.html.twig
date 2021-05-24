@@ -28,27 +28,38 @@
 		<!-- HEADER -->
 		<header class="container-fluid bg-dark">
 			<div class="row">
-				<div class="dflex header_left col-4">
+				<div class="dflex header_left col-12 col-md-4 text-center">
 					<a href="{{ path ('home')}}">
 						<h1 id="titre_principal">Click & Coiff</h1>
 					</a>
 					<p>
 						Se faire coiffer n'a jamais été aussi simple</p>
 				</div>
-				<div class="col-4 m-auto text-center">
+				<div class="col-12 col-md-4 m-auto text-center">
 					<img src="{{ asset ('assets/img/logo_clickcoiff.png')}}" alt="logo_clickcoiff">
 				</div>
-				<div class="header_right col-4 text-right">
+				<div class="header_right col-12 col-md-4 text-center">
 					<div id="login">
-						<a href="{{ path ('app_login')}}">Connexion</a>
-						{% if block('inscription') is defined %}
-							<a href="{{ path ('register')}}" class="btn btn-light text-dark" id="inscription">Inscription</a>
+
+						{% if app.user %}
+							<div class="mt-4">
+
+								<a class="btn btn-light text-dark textdeconone" {% if (app.user.roles[0] == 'ROLE_USER') %} href="{{ path ('moncompte')}}" {% elseif (app.user.roles[0] == 'ROLE_ADMIN') %} href="{{ path ('admin')}}" {% else %} href="{{ path ('superadmin')}}" {% endif %}>
+									Mon compte
+									<small>({{app.user.firstname}})</small>
+								</a>
+								<a class="btn btn-light text-dark textdeconone" href="{{path ('app_logout') }}">Déconnexion</a>
+							</div>
+						{% else %}
+							<a href="{{ path ('app_login')}}">Connexion</a>
+							<a href="{{path ('register') }}" class="btn btn-light text-dark textdeconone" id="inscription">Inscription</a>
+							<div id="pro" class="mt-3">
+								<a href="{{ path ('register-pro')}}">
+									Vous êtes professionnel ? C'est par ici !</a>
+							</div>
 						{% endif %}
 					</div>
-					<div id="pro" class="mt-3">
-						<a href="{{ path ('register-pro')}}">
-							Vous êtes professionnel ? C'est par ici !</a>
-					</div>
+
 				</div>
 			</div>
 		</header>
@@ -57,21 +68,34 @@
 			class="container">
 
 			<!-- NAVBAR -->
-			<nav class="navbar-light bg-light mt-1">
-				<ul>
-					<li>
-						<a class="navbar-brand text-dark" href="{{ path ('home')}}">Accueil</a>
-					</li>
-					<li>
-						<a class="navbar-brand text-dark" href="{{ path ('coupes_tendances')}}">Voir les coupes tendance</a>
-					</li>
-					<li>
-						<a class="navbar-brand text-dark" href="{{ path ('identity') }}">A propos de Click & Coiff</a>
-					</li>
-					<li>
-						<a class="navbar-brand text-dark" href="{{ path ('contact') }}">Contact</a>
-					</li>
-				</ul>
+
+			<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between text-center">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="navbar-brand text-dark" href="{{ path ('home')}}">Accueil</a>
+						</li>
+						<li class="nav-item">
+							<a class="navbar-brand text-dark" href="{{ path ('coupes_tendances')}}">Voir les coupes tendances</a>
+						</li>
+						<li class="nav-item">
+							<a class="navbar-brand text-dark" href="{{ path ('identity') }}">A propos de Click & Coiff</a>
+						</li>
+						<li class="nav-item">
+							<a class="navbar-brand text-dark" href="{{ path ('contact') }}">Contact</a>
+						</li>
+						<li class="nav-item">
+							<a class="navbar-brand text-dark" href="{{ path ('boutique') }}">La boutique</a>
+						</li>
+						<li class="nav-item">
+							<a class="navbar-brand text-dark" href="{{ path ('panier') }}"><i class="fas fa-cart-arrow-down"></i></a>
+						</li>
+					</ul>
+				</div>
 			</nav>
 
 

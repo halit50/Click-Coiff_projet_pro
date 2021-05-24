@@ -19,22 +19,39 @@ class EnseigneRepository extends ServiceEntityRepository
         parent::__construct($registry, Enseigne::class);
     }
 
-    // /**
-    //  * @return Enseigne[] Returns an array of Enseigne objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Enseigne[] Returns an array of Enseigne objects
+     */
+    public function recherche($criteria)
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
+//         $qb->select(array('u')) // string 'u' is converted to array internally
+//    ->from('User', 'u')
+//    ->where($qb->expr()->orX(
+//        $qb->expr()->eq('u.id', '?1'),
+//        $qb->expr()->like('u.nickname', '?2')
+//   ))
+            //dd($criteria);
+            $qb = $this->createQueryBuilder('e')
+
+            ->innerJoin('e.adresses', 'a')
+            ->addSelect('a');
+            return $qb->where($qb->expr()->andX(
+                $qb->expr()->eq('e.typeCoiffeur', ':typeCoiffeur'),
+                $qb->expr()->like('a.codePostal', ':codePostal')
+            ))
+
+            //$qb->Where('e.typeCoiffeur = :typeCoiffeur')
+            //->andWhere('a.codePostal = :codePostal')
             ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
+            ->setParameter('typeCoiffeur', $criteria['typeCoiffeur'])
+            ->setParameter('codePostal', $criteria['codePostal'].'%')
+
+            //->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Enseigne

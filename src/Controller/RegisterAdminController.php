@@ -31,7 +31,9 @@ class RegisterAdminController extends AbstractController
             $em->persist($enseigne);
             $em->flush();
 
-            return $this->redirectToRoute('admin');
+            $this->addFlash('bravo', 'Félicitation, Votre compte a bien été créé');
+
+            return $this->redirectToRoute('validationcompte');
         }
         return $this->render('register/registerPro.html.twig', [
             'form' => $form->createView()

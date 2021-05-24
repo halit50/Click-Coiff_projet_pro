@@ -10,11 +10,13 @@ use App\Form\PrendreRdvType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FicheEnseigneController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER") or ("ROLE_ADMIN") or ("ROLE_SUPERADMIN")
      * @Route("/fiche/enseigne/{id}", name="ficheEnseigne")
      */
     public function index(Enseigne $enseigne, Request $request): Response
@@ -34,6 +36,12 @@ class FicheEnseigneController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($rdv);
             $em->flush();
+
+            $this->addFlash('rdvpris', 'Félicitation, Votre rendez-vous a bien été fixé');
+
+            return $this->redirectToRoute('mesrdv');
+
+            
         }
 
 

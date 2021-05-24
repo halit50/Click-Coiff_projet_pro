@@ -22,7 +22,7 @@ class AdressesType extends AbstractType
                     'class' => 'form-control m-auto'
                 ]
             ])
-            ->add('codePostal',IntegerType::class, [
+            ->add('codePostal',TextType::class, [
                 'label' => 'Code Postal',
                 'attr' => [
                     'class' => 'form-control  m-auto'
@@ -36,7 +36,6 @@ class AdressesType extends AbstractType
             ])
             ->add('pays', TextType::class, [
                 'label' => 'Pays',
-                'disabled' =>true,
                 'data' => 'France',
                 'attr' => [
                     'class' => 'form-control  m-auto'

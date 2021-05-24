@@ -103,9 +103,11 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
         $roles = $token->getUser()->getRoles();
         if (in_array("ROLE_ADMIN", $roles)) {
         return new RedirectResponse($this->urlGenerator->generate('admin'));
+        } elseif (in_array("ROLE_SUPERADMIN", $roles)){
+        return new RedirectResponse($this->urlGenerator->generate('superadmin'));
         } else {
-        return new RedirectResponse($this->urlGenerator->generate('moncompte'));
-        }
+            return new RedirectResponse($this->urlGenerator->generate('moncompte'));
+        };
         
     }
 

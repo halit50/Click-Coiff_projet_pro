@@ -28,7 +28,9 @@ class RegisterController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('moncompte');
+            $this->addFlash('bravo', 'Félicitation, Votre compte a bien été créé');
+
+            return $this->redirectToRoute('validationcompte');
         }
         return $this->render('register/register.html.twig', [
             'form' => $form->createView()

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EnseigneRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EnseigneRepository::class)
@@ -26,6 +27,12 @@ class Enseigne
     private $nom;
 
     /**
+     * @Assert\Length(
+     *      min = 9,
+     *      max = 9,
+     *      minMessage = "Votre numéro de SIREN doit contenir exactement {{ limit }} caractères",
+     *      maxMessage = "Votre numéro de SIREN doit contenir exactement {{ limit }}caractères"
+     * )
      * @ORM\Column(type="float")
      */
     private $kbis;
@@ -56,15 +63,23 @@ class Enseigne
      */
     private $creneaus;
 
+    
     /**
-     * @ORM\ManyToMany(targetEntity=PrestationServices::class, mappedBy="enseigne")
+     * @ORM\OneToMany(targetEntity=PrestationServices::class, mappedBy="enseigne")
      */
     private $prestationServices;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Fichier::class, mappedBy="enseigne")
+     */
+    private $fichiers;
+
 
     public function __construct()
     {
         $this->creneaus = new ArrayCollection();
         $this->prestationServices = new ArrayCollection();
+        $this->fichiers = new ArrayCollection();
     }
 
     public function __toString(){
@@ -192,7 +207,7 @@ class Enseigne
     {
         if (!$this->prestationServices->contains($prestationService)) {
             $this->prestationServices[] = $prestationService;
-            $prestationService->addEnseigne($this);
+            $prestationService->setEnseigne($this);
         }
 
         return $this;
@@ -201,11 +216,44 @@ class Enseigne
     public function removePrestationService(PrestationServices $prestationService): self
     {
         if ($this->prestationServices->removeElement($prestationService)) {
-            $prestationService->removeEnseigne($this);
+            // set the owning side to null (unless already changed)
+            if ($prestationService->getEnseigne() === $this) {
+                $prestationService->setEnseigne(null);
+            }
         }
 
         return $this;
     }
 
+    /**
+     * @return Collection|Fichier[]
+     */
+    public function getFichiers(): Collection
+    {
+        return $this->fichiers;
+    }
+
+    public function addFichier(Fichier $fichier): self
+    {
+        if (!$this->fichiers->contains($fichier)) {
+            $this->fichiers[] = $fichier;
+            $fichier->setEnseigne($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFichier(Fichier $fichier): self
+    {
+        if ($this->fichiers->removeElement($fichier)) {
+            // set the owning side to null (unless already changed)
+            if ($fichier->getEnseigne() === $this) {
+                $fichier->setEnseigne(null);
+            }
+        }
+
+        return $this;
+    }
+   
     
 }

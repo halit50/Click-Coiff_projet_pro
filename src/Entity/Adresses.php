@@ -6,6 +6,7 @@ use App\Repository\AdressesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AdressesRepository::class)
@@ -25,16 +26,34 @@ class Adresses
     private $rue;
 
     /**
-     * @ORM\Column(type="integer")
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 5,
+     *      minMessage = "Votre Code Postal doit contenir au minimum 5 caractères",
+     *      maxMessage = "Votre Code Postal doit contenir au maximum 5 caractères"
+     * )
+     * @ORM\Column(type="string")
      */
     private $codePostal;
 
     /**
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Votre Ville doit contenir au minimum 2 caractères",
+     *      maxMessage = "Votre Ville doit contenir au maximum 50 caractères"
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $ville;
 
     /**
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Votre Pays doit contenir au minimum 2 caractères",
+     *      maxMessage = "Votre Pays doit contenir au maximum 50 caractères"
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $pays;
@@ -50,10 +69,6 @@ class Adresses
      */
     private $prendreRdvs;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Fichier::class, mappedBy="adresses")
-     */
-    private $fichiers;
 
     public function __construct()
     {
@@ -160,30 +175,4 @@ class Adresses
         return $this;
     }
 
-    /**
-     * @return Collection|Fichier[]
-     */
-    public function getFichiers(): Collection
-    {
-        return $this->fichiers;
-    }
-
-    public function addFichier(Fichier $fichier): self
-    {
-        if (!$this->fichiers->contains($fichier)) {
-            $this->fichiers[] = $fichier;
-            $fichier->addAdress($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFichier(Fichier $fichier): self
-    {
-        if ($this->fichiers->removeElement($fichier)) {
-            $fichier->removeAdress($this);
-        }
-
-        return $this;
-    }
 }

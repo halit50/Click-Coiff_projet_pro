@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La boutique - Click & Coiff
+{% endblock %}
+
+{% block content %}
+	<h2 class="text-center text-dark mt-3">La boutique</h2>
+	<p class="text-center text-dark mt-3">Bienvenue dans notre section boutique, vous trouverez ici tous les produits vendus par vos salons préférés</p>
+    <div class="row mt-5">
+        <div class="col-12 col-md-3">
+            <h3> Filtrer</h3>
+            {{ form (form)}}
+        </div>
+        <div class="col-12 col-md-9 d-flex">
+        <div class="row">
+        {% for produit in produits %}
+            <div class="col-12 col-md-3 col-lg-4">
+                {% include 'boutique/produit_seul.html.twig'%}
+            </div>
+        {% endfor %}
+        </div>
+        </div>
+    </div>
+
+{% endblock %}
